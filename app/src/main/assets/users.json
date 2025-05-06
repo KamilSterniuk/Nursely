@@ -1,0 +1,17 @@
+[
+  {
+    "login": "admin",
+    "password": "admin1",
+    "userType": "admin"
+  },
+  {
+    "login": "nurse1",
+    "password": "nurse123",
+    "userType": "nurse"
+  },
+  {
+    "login": "nurse2",
+    "password": "nurse456",
+    "userType": "nurse"
+  }
+]
