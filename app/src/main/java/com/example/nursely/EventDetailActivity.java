@@ -1,3 +1,4 @@
+// === EventDetailActivity.java z opcją dzwonienia ===
 package com.example.nursely;
 
 import android.content.Intent;
@@ -5,10 +6,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import android.content.pm.PackageManager;
+import android.Manifest;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,35 +22,48 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.Iterator;
 
 public class EventDetailActivity extends AppCompatActivity {
 
     TextView nameText, phoneText, addressText, detailsText;
-    EditText dateEdit, timeEdit, notesEdit;
-    Button openMapBtn, saveBtn, deleteBtn;
+    EditText notesEditText;
+    Button openMapBtn, editBtn, deleteBtn, saveNoteBtn, callBtn;
     String login, date, time;
     EventItem currentEvent;
+    private static final int REQUEST_CALL_PERMISSION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_detail);
 
-        nameText = findViewById(R.id.patientName);
-        phoneText = findViewById(R.id.patientPhone);
-        addressText = findViewById(R.id.patientAddress);
-        detailsText = findViewById(R.id.patientDetails);
-        dateEdit = findViewById(R.id.dateEdit);
-        timeEdit = findViewById(R.id.timeEdit);
-        notesEdit = findViewById(R.id.notesEdit);
+        nameText = findViewById(R.id.nameText);
+        phoneText = findViewById(R.id.phoneText);
+        addressText = findViewById(R.id.addressText);
+        detailsText = findViewById(R.id.detailsText);
+        notesEditText = findViewById(R.id.notesEditText);
+
         openMapBtn = findViewById(R.id.openMapButton);
-        saveBtn = findViewById(R.id.saveButton);
+        editBtn = findViewById(R.id.editButton);
         deleteBtn = findViewById(R.id.deleteButton);
+        saveNoteBtn = findViewById(R.id.saveNoteButton);
 
         login = getIntent().getStringExtra("login");
         date = getIntent().getStringExtra("date");
         time = getIntent().getStringExtra("time");
+
+        Button callButton = findViewById(R.id.callButton);
+        callButton.setOnClickListener(v -> {
+            String phone = currentEvent.getPhone();
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
+            } else {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + phone));
+                startActivity(callIntent);
+            }
+        });
+
 
         loadEvent();
 
@@ -56,17 +74,27 @@ public class EventDetailActivity extends AppCompatActivity {
             startActivity(mapIntent);
         });
 
-        saveBtn.setOnClickListener(v -> {
-            updateEvent();
-            Toast.makeText(this, "Zapisano zmiany", Toast.LENGTH_SHORT).show();
-            finish();
+        editBtn.setOnClickListener(v -> {
+            Toast.makeText(this, "Tryb edycji (do zaimplementowania)", Toast.LENGTH_SHORT).show();
         });
 
         deleteBtn.setOnClickListener(v -> {
-            deleteEvent();
-            Toast.makeText(this, "Usunięto wizytę", Toast.LENGTH_SHORT).show();
-            finish();
+            Toast.makeText(this, "Potwierdzenie usunięcia (do zaimplementowania)", Toast.LENGTH_SHORT).show();
         });
+
+        saveNoteBtn.setOnClickListener(v -> saveNoteToJson());
+
+    }
+
+    private void makePhoneCall() {
+        String phoneNumber = currentEvent.getPhone();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PERMISSION);
+            return;
+        }
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:" + phoneNumber));
+        startActivity(callIntent);
     }
 
     private void loadEvent() {
@@ -75,10 +103,10 @@ public class EventDetailActivity extends AppCompatActivity {
             BufferedReader reader = new BufferedReader(new FileReader(file));
             StringBuilder sb = new StringBuilder();
             String line;
-
             while ((line = reader.readLine()) != null) {
                 sb.append(line);
             }
+            reader.close();
 
             JSONArray users = new JSONArray(sb.toString());
             for (int i = 0; i < users.length(); i++) {
@@ -101,30 +129,30 @@ public class EventDetailActivity extends AppCompatActivity {
                             phoneText.setText(currentEvent.getPhone());
                             addressText.setText(currentEvent.getAddress());
                             detailsText.setText(currentEvent.getDetails());
-                            dateEdit.setText(currentEvent.getDate());
-                            timeEdit.setText(currentEvent.getTime());
-                            notesEdit.setText(currentEvent.getNotes());
+                            notesEditText.setText(currentEvent.getNotes());
                             return;
                         }
                     }
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "Błąd ładowania wydarzenia", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void updateEvent() {
+    private void saveNoteToJson() {
         try {
             File file = new File(getFilesDir(), "users.json");
             BufferedReader reader = new BufferedReader(new FileReader(file));
             StringBuilder sb = new StringBuilder();
             String line;
-            while ((line = reader.readLine()) != null) sb.append(line);
-            JSONArray users = new JSONArray(sb.toString());
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+            reader.close();
 
+            JSONArray users = new JSONArray(sb.toString());
             for (int i = 0; i < users.length(); i++) {
                 JSONObject user = users.getJSONObject(i);
                 if (user.getString("login").equals(login)) {
@@ -132,51 +160,22 @@ public class EventDetailActivity extends AppCompatActivity {
                     for (int j = 0; j < events.length(); j++) {
                         JSONObject e = events.getJSONObject(j);
                         if (e.getString("date").equals(date) && e.getString("time").equals(time)) {
-                            e.put("date", dateEdit.getText().toString());
-                            e.put("time", timeEdit.getText().toString());
-                            e.put("notes", notesEdit.getText().toString());
-                            break;
+                            String newNote = notesEditText.getText().toString();
+                            e.put("notes", newNote);
+                            FileWriter writer = new FileWriter(file);
+                            writer.write(users.toString(2));
+                            writer.close();
+                            Toast.makeText(this, "Notatka zapisana", Toast.LENGTH_SHORT).show();
+                            return;
                         }
                     }
                 }
             }
 
-            FileWriter writer = new FileWriter(file);
-            writer.write(users.toString());
-            writer.close();
+            Toast.makeText(this, "Nie znaleziono wydarzenia do zapisu", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    private void deleteEvent() {
-        try {
-            File file = new File(getFilesDir(), "users.json");
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) sb.append(line);
-            JSONArray users = new JSONArray(sb.toString());
-
-            for (int i = 0; i < users.length(); i++) {
-                JSONObject user = users.getJSONObject(i);
-                if (user.getString("login").equals(login)) {
-                    JSONArray events = user.getJSONArray("events");
-                    for (int j = events.length() - 1; j >= 0; j--) {
-                        JSONObject e = events.getJSONObject(j);
-                        if (e.getString("date").equals(date) && e.getString("time").equals(time)) {
-                            events.remove(j);  // <-- usuwa obiekt z JSONArray
-                            break;
-                        }
-                    }
-                }
-            }
-
-            FileWriter writer = new FileWriter(file);
-            writer.write(users.toString());
-            writer.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+            Toast.makeText(this, "Błąd zapisu notatki", Toast.LENGTH_SHORT).show();
         }
     }
 }
