@@ -7,11 +7,255 @@
   {
     "login": "nurse1",
     "password": "nurse123",
-    "userType": "nurse"
+    "userType": "nurse",
+    "events": [
+      {
+        "date": "2025-05-05",
+        "time": "08:30",
+        "name": "Jan Kowalski",
+        "address": "ul. Grunwaldzka 100, Gdańsk"
+      },
+      {
+        "date": "2025-05-05",
+        "time": "10:00",
+        "name": "Anna Nowak",
+        "address": "ul. Świętojańska 25, Gdańsk"
+      },
+      {
+        "date": "2025-05-05",
+        "time": "12:00",
+        "name": "Jan Kowalski",
+        "address": "ul. Szeroka 15, Gdańsk"
+      },
+      {
+        "date": "2025-05-05",
+        "time": "14:00",
+        "name": "Ewa Kaczmarek",
+        "address": "ul. Długa 1, Gdańsk"
+      },
+      {
+        "date": "2025-05-06",
+        "time": "08:30",
+        "name": "Piotr Zieliński",
+        "address": "ul. Ogarna 21, Gdańsk"
+      },
+      {
+        "date": "2025-05-06",
+        "time": "10:00",
+        "name": "Maria Wiśniewska",
+        "address": "ul. Długa 1, Gdańsk"
+      },
+      {
+        "date": "2025-05-06",
+        "time": "12:00",
+        "name": "Jan Kowalski",
+        "address": "ul. Świętojańska 25, Gdańsk"
+      },
+      {
+        "date": "2025-05-06",
+        "time": "14:00",
+        "name": "Piotr Zieliński",
+        "address": "ul. Ogarna 21, Gdańsk"
+      },
+      {
+        "date": "2025-05-07",
+        "time": "08:30",
+        "name": "Piotr Zieliński",
+        "address": "ul. Ogarna 21, Gdańsk"
+      },
+      {
+        "date": "2025-05-07",
+        "time": "10:00",
+        "name": "Ewa Kaczmarek",
+        "address": "ul. Ogarna 21, Gdańsk"
+      },
+      {
+        "date": "2025-05-07",
+        "time": "12:00",
+        "name": "Maria Wiśniewska",
+        "address": "ul. Ogarna 21, Gdańsk"
+      },
+      {
+        "date": "2025-05-07",
+        "time": "14:00",
+        "name": "Maria Wiśniewska",
+        "address": "ul. Rajska 10, Gdańsk"
+      },
+      {
+        "date": "2025-05-08",
+        "time": "08:30",
+        "name": "Anna Nowak",
+        "address": "ul. Grunwaldzka 100, Gdańsk"
+      },
+      {
+        "date": "2025-05-08",
+        "time": "10:00",
+        "name": "Ewa Kaczmarek",
+        "address": "ul. Mariacka 8, Gdańsk"
+      },
+      {
+        "date": "2025-05-08",
+        "time": "12:00",
+        "name": "Piotr Zieliński",
+        "address": "ul. Szeroka 15, Gdańsk"
+      },
+      {
+        "date": "2025-05-08",
+        "time": "14:00",
+        "name": "Maria Wiśniewska",
+        "address": "ul. Szeroka 15, Gdańsk"
+      },
+      {
+        "date": "2025-05-09",
+        "time": "08:30",
+        "name": "Maria Wiśniewska",
+        "address": "ul. Rajska 10, Gdańsk"
+      },
+      {
+        "date": "2025-05-09",
+        "time": "10:00",
+        "name": "Ewa Kaczmarek",
+        "address": "ul. Jaśkowa Dolina 17, Gdańsk"
+      },
+      {
+        "date": "2025-05-09",
+        "time": "12:00",
+        "name": "Ewa Kaczmarek",
+        "address": "ul. Długa 1, Gdańsk"
+      },
+      {
+        "date": "2025-05-09",
+        "time": "14:00",
+        "name": "Ewa Kaczmarek",
+        "address": "ul. Podwale Staromiejskie 5, Gdańsk"
+      }
+    ]
   },
   {
     "login": "nurse2",
     "password": "nurse456",
-    "userType": "nurse"
+    "userType": "nurse",
+    "events": [
+      {
+        "date": "2025-05-05",
+        "time": "08:30",
+        "name": "Maria Wiśniewska",
+        "address": "ul. Mariacka 8, Gdańsk"
+      },
+      {
+        "date": "2025-05-05",
+        "time": "10:00",
+        "name": "Jan Kowalski",
+        "address": "ul. Podwale Staromiejskie 5, Gdańsk"
+      },
+      {
+        "date": "2025-05-05",
+        "time": "12:00",
+        "name": "Jan Kowalski",
+        "address": "ul. Świętojańska 25, Gdańsk"
+      },
+      {
+        "date": "2025-05-05",
+        "time": "14:00",
+        "name": "Ewa Kaczmarek",
+        "address": "ul. Jaśkowa Dolina 17, Gdańsk"
+      },
+      {
+        "date": "2025-05-06",
+        "time": "08:30",
+        "name": "Piotr Zieliński",
+        "address": "ul. Rajska 10, Gdańsk"
+      },
+      {
+        "date": "2025-05-06",
+        "time": "10:00",
+        "name": "Anna Nowak",
+        "address": "ul. Podwale Staromiejskie 5, Gdańsk"
+      },
+      {
+        "date": "2025-05-06",
+        "time": "12:00",
+        "name": "Maria Wiśniewska",
+        "address": "ul. Rajska 10, Gdańsk"
+      },
+      {
+        "date": "2025-05-06",
+        "time": "14:00",
+        "name": "Anna Nowak",
+        "address": "ul. Chlebnicka 3, Gdańsk"
+      },
+      {
+        "date": "2025-05-07",
+        "time": "08:30",
+        "name": "Maria Wiśniewska",
+        "address": "ul. Rajska 10, Gdańsk"
+      },
+      {
+        "date": "2025-05-07",
+        "time": "10:00",
+        "name": "Piotr Zieliński",
+        "address": "ul. Ogarna 21, Gdańsk"
+      },
+      {
+        "date": "2025-05-07",
+        "time": "12:00",
+        "name": "Jan Kowalski",
+        "address": "ul. Szeroka 15, Gdańsk"
+      },
+      {
+        "date": "2025-05-07",
+        "time": "14:00",
+        "name": "Ewa Kaczmarek",
+        "address": "ul. Długa 1, Gdańsk"
+      },
+      {
+        "date": "2025-05-08",
+        "time": "08:30",
+        "name": "Ewa Kaczmarek",
+        "address": "ul. Grunwaldzka 100, Gdańsk"
+      },
+      {
+        "date": "2025-05-08",
+        "time": "10:00",
+        "name": "Jan Kowalski",
+        "address": "ul. Jaśkowa Dolina 17, Gdańsk"
+      },
+      {
+        "date": "2025-05-08",
+        "time": "12:00",
+        "name": "Jan Kowalski",
+        "address": "ul. Szeroka 15, Gdańsk"
+      },
+      {
+        "date": "2025-05-08",
+        "time": "14:00",
+        "name": "Maria Wiśniewska",
+        "address": "ul. Mariacka 8, Gdańsk"
+      },
+      {
+        "date": "2025-05-09",
+        "time": "08:30",
+        "name": "Anna Nowak",
+        "address": "ul. Chlebnicka 3, Gdańsk"
+      },
+      {
+        "date": "2025-05-09",
+        "time": "10:00",
+        "name": "Maria Wiśniewska",
+        "address": "ul. Chlebnicka 3, Gdańsk"
+      },
+      {
+        "date": "2025-05-09",
+        "time": "12:00",
+        "name": "Ewa Kaczmarek",
+        "address": "ul. Grunwaldzka 100, Gdańsk"
+      },
+      {
+        "date": "2025-05-09",
+        "time": "14:00",
+        "name": "Maria Wiśniewska",
+        "address": "ul. Jaśkowa Dolina 17, Gdańsk"
+      }
+    ]
   }
 ]

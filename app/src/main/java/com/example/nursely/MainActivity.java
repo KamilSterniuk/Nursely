@@ -54,7 +54,10 @@ public class MainActivity extends AppCompatActivity {
                         if (userType.equals("admin")) {
                             startActivity(new Intent(MainActivity.this, AdminActivity.class));
                         } else {
-                            startActivity(new Intent(MainActivity.this, NurseActivity.class));
+                            Intent intent = new Intent(MainActivity.this, NurseActivity.class);
+                            intent.putExtra("login", login);
+                            startActivity(intent);
+
                         }
                         finish(); // zakończ bieżące activity
                         break;
@@ -75,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
     // Kopiuje plik users.json z assets do pamięci wewnętrznej, jeśli jeszcze go tam nie ma
     private void copyJsonIfNotExists() {
         File file = new File(getFilesDir(), FILE_NAME);
+        System.out.println(getFilesDir());
         if (!file.exists()) {
             try (InputStream is = getAssets().open(FILE_NAME);
                  OutputStream os = openFileOutput(FILE_NAME, Context.MODE_PRIVATE)) {
