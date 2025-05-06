@@ -1,3 +1,4 @@
+// === NurseActivity.java (poprawiona konstrukcja EventItem) ===
 package com.example.nursely;
 
 import android.content.Context;
@@ -15,13 +16,11 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
-
-
-import java.io.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -34,8 +33,7 @@ public class NurseActivity extends AppCompatActivity {
     EventAdapter adapter;
     List<EventItem> fullEventList = new ArrayList<>();
     String currentLogin;
-
-    private LocalDate selectedDate = null;
+    LocalDate selectedDate = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +52,6 @@ public class NurseActivity extends AppCompatActivity {
             LocalDate clickedDate = convertToLocalDate(calendarDay.getDate());
 
             if (selectedDate != null && selectedDate.equals(clickedDate)) {
-                // Odznaczamy – pokaż wszystkie
                 calendarView.clearSelection();
                 selectedDate = null;
                 showAllEventsGrouped();
@@ -63,7 +60,6 @@ public class NurseActivity extends AppCompatActivity {
                 filterEventsByDate(clickedDate);
             }
         });
-
 
         showAllEventsGrouped();
     }
@@ -92,7 +88,10 @@ public class NurseActivity extends AppCompatActivity {
                                     e.getString("date"),
                                     e.getString("time"),
                                     e.getString("name"),
-                                    e.getString("address")
+                                    e.getString("address"),
+                                    e.optString("phone", ""),
+                                    e.optString("details", ""),
+                                    e.optString("notes", "")
                             ));
                         }
                     }
@@ -114,17 +113,12 @@ public class NurseActivity extends AppCompatActivity {
                 filtered.add(item);
             }
         }
-        adapter = new EventAdapter(filtered);
+        adapter = new EventAdapter(filtered, currentLogin);
         recyclerView.setAdapter(adapter);
     }
 
-    private LocalDate convertToLocalDate(Date date) {
-        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-    }
-
     private void showAllEventsGrouped() {
-        // Grupowanie po dacie
-        Map<String, List<EventItem>> grouped = new TreeMap<>(); // automatycznie posortowane po dacie
+        Map<String, List<EventItem>> grouped = new TreeMap<>();
 
         for (EventItem item : fullEventList) {
             String date = item.getDate();
@@ -134,17 +128,17 @@ public class NurseActivity extends AppCompatActivity {
             grouped.get(date).add(item);
         }
 
-        // Tworzymy listę z nagłówkami dat + eventami
         List<EventItem> groupedWithHeaders = new ArrayList<>();
         for (String date : grouped.keySet()) {
-            // Dodaj nagłówek jako specjalny EventItem z time == null
-            groupedWithHeaders.add(new EventItem(date, null, null, null));
+            groupedWithHeaders.add(new EventItem(date, null, null, null, null, null, null));
             groupedWithHeaders.addAll(grouped.get(date));
         }
 
-        adapter = new EventAdapter(groupedWithHeaders);
+        adapter = new EventAdapter(groupedWithHeaders, currentLogin);
         recyclerView.setAdapter(adapter);
     }
 
-
+    private LocalDate convertToLocalDate(java.util.Date date) {
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
 }

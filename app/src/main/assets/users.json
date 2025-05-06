@@ -12,122 +12,182 @@
       {
         "date": "2025-05-05",
         "time": "08:30",
-        "name": "Jan Kowalski",
-        "address": "ul. Grunwaldzka 100, Gdańsk"
-      },
-      {
-        "date": "2025-05-05",
-        "time": "10:00",
         "name": "Anna Nowak",
-        "address": "ul. Świętojańska 25, Gdańsk"
+        "address": "ul. Podwale Staromiejskie 5, Gdańsk",
+        "phone": "555-888-111",
+        "details": "Zastrzyk domięśniowy",
+        "notes": ""
+      },
+      {
+        "date": "2025-05-05",
+        "time": "10:00",
+        "name": "Jan Kowalski",
+        "address": "ul. Mariacka 8, Gdańsk",
+        "phone": "222-333-444",
+        "details": "Zmiana opatrunku",
+        "notes": ""
       },
       {
         "date": "2025-05-05",
         "time": "12:00",
         "name": "Jan Kowalski",
-        "address": "ul. Szeroka 15, Gdańsk"
+        "address": "ul. Jaśkowa Dolina 17, Gdańsk",
+        "phone": "666-777-999",
+        "details": "Zmiana opatrunku",
+        "notes": ""
       },
       {
         "date": "2025-05-05",
         "time": "14:00",
-        "name": "Ewa Kaczmarek",
-        "address": "ul. Długa 1, Gdańsk"
-      },
-      {
-        "date": "2025-05-06",
-        "time": "08:30",
-        "name": "Piotr Zieliński",
-        "address": "ul. Ogarna 21, Gdańsk"
-      },
-      {
-        "date": "2025-05-06",
-        "time": "10:00",
-        "name": "Maria Wiśniewska",
-        "address": "ul. Długa 1, Gdańsk"
-      },
-      {
-        "date": "2025-05-06",
-        "time": "12:00",
         "name": "Jan Kowalski",
-        "address": "ul. Świętojańska 25, Gdańsk"
+        "address": "ul. Świętojańska 25, Gdańsk",
+        "phone": "222-333-444",
+        "details": "Zastrzyk domięśniowy",
+        "notes": ""
       },
       {
         "date": "2025-05-06",
-        "time": "14:00",
-        "name": "Piotr Zieliński",
-        "address": "ul. Ogarna 21, Gdańsk"
-      },
-      {
-        "date": "2025-05-07",
         "time": "08:30",
-        "name": "Piotr Zieliński",
-        "address": "ul. Ogarna 21, Gdańsk"
-      },
-      {
-        "date": "2025-05-07",
-        "time": "10:00",
         "name": "Ewa Kaczmarek",
-        "address": "ul. Ogarna 21, Gdańsk"
+        "address": "ul. Grunwaldzka 100, Gdańsk",
+        "phone": "987-654-321",
+        "details": "Pomiar poziomu cukru",
+        "notes": ""
       },
       {
-        "date": "2025-05-07",
+        "date": "2025-05-06",
+        "time": "10:00",
+        "name": "Maria Wiśniewska",
+        "address": "ul. Grunwaldzka 100, Gdańsk",
+        "phone": "555-888-111",
+        "details": "Kontrola ciśnienia i pobranie krwi",
+        "notes": ""
+      },
+      {
+        "date": "2025-05-06",
         "time": "12:00",
-        "name": "Maria Wiśniewska",
-        "address": "ul. Ogarna 21, Gdańsk"
-      },
-      {
-        "date": "2025-05-07",
-        "time": "14:00",
-        "name": "Maria Wiśniewska",
-        "address": "ul. Rajska 10, Gdańsk"
-      },
-      {
-        "date": "2025-05-08",
-        "time": "08:30",
         "name": "Anna Nowak",
-        "address": "ul. Grunwaldzka 100, Gdańsk"
+        "address": "ul. Mariacka 8, Gdańsk",
+        "phone": "555-888-111",
+        "details": "Zmiana opatrunku",
+        "notes": ""
+      },
+      {
+        "date": "2025-05-06",
+        "time": "14:00",
+        "name": "Ewa Kaczmarek",
+        "address": "ul. Jaśkowa Dolina 17, Gdańsk",
+        "phone": "555-888-111",
+        "details": "Konsultacja pielęgniarska",
+        "notes": ""
+      },
+      {
+        "date": "2025-05-07",
+        "time": "08:30",
+        "name": "Ewa Kaczmarek",
+        "address": "ul. Ogarna 21, Gdańsk",
+        "phone": "666-777-999",
+        "details": "Zastrzyk domięśniowy",
+        "notes": ""
+      },
+      {
+        "date": "2025-05-07",
+        "time": "10:00",
+        "name": "Jan Kowalski",
+        "address": "ul. Szeroka 15, Gdańsk",
+        "phone": "222-333-444",
+        "details": "Konsultacja pielęgniarska",
+        "notes": ""
+      },
+      {
+        "date": "2025-05-07",
+        "time": "12:00",
+        "name": "Jan Kowalski",
+        "address": "ul. Chlebnicka 3, Gdańsk",
+        "phone": "987-654-321",
+        "details": "Zastrzyk domięśniowy",
+        "notes": ""
+      },
+      {
+        "date": "2025-05-07",
+        "time": "14:00",
+        "name": "Jan Kowalski",
+        "address": "ul. Długa 1, Gdańsk",
+        "phone": "666-777-999",
+        "details": "Kontrola ciśnienia i pobranie krwi",
+        "notes": ""
+      },
+      {
+        "date": "2025-05-08",
+        "time": "08:30",
+        "name": "Maria Wiśniewska",
+        "address": "ul. Długa 1, Gdańsk",
+        "phone": "555-888-111",
+        "details": "Konsultacja pielęgniarska",
+        "notes": ""
       },
       {
         "date": "2025-05-08",
         "time": "10:00",
         "name": "Ewa Kaczmarek",
-        "address": "ul. Mariacka 8, Gdańsk"
+        "address": "ul. Ogarna 21, Gdańsk",
+        "phone": "222-333-444",
+        "details": "Zastrzyk domięśniowy",
+        "notes": ""
       },
       {
         "date": "2025-05-08",
         "time": "12:00",
-        "name": "Piotr Zieliński",
-        "address": "ul. Szeroka 15, Gdańsk"
+        "name": "Ewa Kaczmarek",
+        "address": "ul. Świętojańska 25, Gdańsk",
+        "phone": "222-333-444",
+        "details": "Zastrzyk domięśniowy",
+        "notes": ""
       },
       {
         "date": "2025-05-08",
         "time": "14:00",
-        "name": "Maria Wiśniewska",
-        "address": "ul. Szeroka 15, Gdańsk"
+        "name": "Anna Nowak",
+        "address": "ul. Podwale Staromiejskie 5, Gdańsk",
+        "phone": "555-888-111",
+        "details": "Zastrzyk domięśniowy",
+        "notes": ""
       },
       {
         "date": "2025-05-09",
         "time": "08:30",
-        "name": "Maria Wiśniewska",
-        "address": "ul. Rajska 10, Gdańsk"
+        "name": "Ewa Kaczmarek",
+        "address": "ul. Podwale Staromiejskie 5, Gdańsk",
+        "phone": "555-888-111",
+        "details": "Konsultacja pielęgniarska",
+        "notes": ""
       },
       {
         "date": "2025-05-09",
         "time": "10:00",
-        "name": "Ewa Kaczmarek",
-        "address": "ul. Jaśkowa Dolina 17, Gdańsk"
+        "name": "Piotr Zieliński",
+        "address": "ul. Mariacka 8, Gdańsk",
+        "phone": "555-888-111",
+        "details": "Zmiana opatrunku",
+        "notes": ""
       },
       {
         "date": "2025-05-09",
         "time": "12:00",
-        "name": "Ewa Kaczmarek",
-        "address": "ul. Długa 1, Gdańsk"
+        "name": "Anna Nowak",
+        "address": "ul. Chlebnicka 3, Gdańsk",
+        "phone": "222-333-444",
+        "details": "Pomiar poziomu cukru",
+        "notes": ""
       },
       {
         "date": "2025-05-09",
         "time": "14:00",
-        "name": "Ewa Kaczmarek",
-        "address": "ul. Podwale Staromiejskie 5, Gdańsk"
+        "name": "Piotr Zieliński",
+        "address": "ul. Mariacka 8, Gdańsk",
+        "phone": "123-456-789",
+        "details": "Zastrzyk domięśniowy",
+        "notes": ""
       }
     ]
   },
@@ -139,122 +199,182 @@
       {
         "date": "2025-05-05",
         "time": "08:30",
-        "name": "Maria Wiśniewska",
-        "address": "ul. Mariacka 8, Gdańsk"
+        "name": "Anna Nowak",
+        "address": "ul. Jaśkowa Dolina 17, Gdańsk",
+        "phone": "123-456-789",
+        "details": "Pomiar poziomu cukru",
+        "notes": ""
       },
       {
         "date": "2025-05-05",
         "time": "10:00",
         "name": "Jan Kowalski",
-        "address": "ul. Podwale Staromiejskie 5, Gdańsk"
+        "address": "ul. Jaśkowa Dolina 17, Gdańsk",
+        "phone": "123-456-789",
+        "details": "Zastrzyk domięśniowy",
+        "notes": ""
       },
       {
         "date": "2025-05-05",
         "time": "12:00",
-        "name": "Jan Kowalski",
-        "address": "ul. Świętojańska 25, Gdańsk"
+        "name": "Maria Wiśniewska",
+        "address": "ul. Podwale Staromiejskie 5, Gdańsk",
+        "phone": "666-777-999",
+        "details": "Konsultacja pielęgniarska",
+        "notes": ""
       },
       {
         "date": "2025-05-05",
         "time": "14:00",
-        "name": "Ewa Kaczmarek",
-        "address": "ul. Jaśkowa Dolina 17, Gdańsk"
+        "name": "Jan Kowalski",
+        "address": "ul. Jaśkowa Dolina 17, Gdańsk",
+        "phone": "555-888-111",
+        "details": "Zmiana opatrunku",
+        "notes": ""
       },
       {
         "date": "2025-05-06",
         "time": "08:30",
+        "name": "Ewa Kaczmarek",
+        "address": "ul. Szeroka 15, Gdańsk",
+        "phone": "666-777-999",
+        "details": "Kontrola ciśnienia i pobranie krwi",
+        "notes": ""
+      },
+      {
+        "date": "2025-05-06",
+        "time": "10:00",
+        "name": "Anna Nowak",
+        "address": "ul. Świętojańska 25, Gdańsk",
+        "phone": "555-888-111",
+        "details": "Kontrola ciśnienia i pobranie krwi",
+        "notes": ""
+      },
+      {
+        "date": "2025-05-06",
+        "time": "12:00",
+        "name": "Anna Nowak",
+        "address": "ul. Grunwaldzka 100, Gdańsk",
+        "phone": "123-456-789",
+        "details": "Zastrzyk domięśniowy",
+        "notes": ""
+      },
+      {
+        "date": "2025-05-06",
+        "time": "14:00",
+        "name": "Jan Kowalski",
+        "address": "ul. Świętojańska 25, Gdańsk",
+        "phone": "222-333-444",
+        "details": "Konsultacja pielęgniarska",
+        "notes": ""
+      },
+      {
+        "date": "2025-05-07",
+        "time": "08:30",
+        "name": "Jan Kowalski",
+        "address": "ul. Mariacka 8, Gdańsk",
+        "phone": "222-333-444",
+        "details": "Zmiana opatrunku",
+        "notes": ""
+      },
+      {
+        "date": "2025-05-07",
+        "time": "10:00",
+        "name": "Anna Nowak",
+        "address": "ul. Rajska 10, Gdańsk",
+        "phone": "987-654-321",
+        "details": "Zastrzyk domięśniowy",
+        "notes": ""
+      },
+      {
+        "date": "2025-05-07",
+        "time": "12:00",
+        "name": "Jan Kowalski",
+        "address": "ul. Jaśkowa Dolina 17, Gdańsk",
+        "phone": "666-777-999",
+        "details": "Pomiar poziomu cukru",
+        "notes": ""
+      },
+      {
+        "date": "2025-05-07",
+        "time": "14:00",
         "name": "Piotr Zieliński",
-        "address": "ul. Rajska 10, Gdańsk"
+        "address": "ul. Mariacka 8, Gdańsk",
+        "phone": "987-654-321",
+        "details": "Zmiana opatrunku",
+        "notes": ""
       },
       {
-        "date": "2025-05-06",
-        "time": "10:00",
-        "name": "Anna Nowak",
-        "address": "ul. Podwale Staromiejskie 5, Gdańsk"
-      },
-      {
-        "date": "2025-05-06",
-        "time": "12:00",
-        "name": "Maria Wiśniewska",
-        "address": "ul. Rajska 10, Gdańsk"
-      },
-      {
-        "date": "2025-05-06",
-        "time": "14:00",
-        "name": "Anna Nowak",
-        "address": "ul. Chlebnicka 3, Gdańsk"
-      },
-      {
-        "date": "2025-05-07",
+        "date": "2025-05-08",
         "time": "08:30",
-        "name": "Maria Wiśniewska",
-        "address": "ul. Rajska 10, Gdańsk"
+        "name": "Anna Nowak",
+        "address": "ul. Chlebnicka 3, Gdańsk",
+        "phone": "222-333-444",
+        "details": "Konsultacja pielęgniarska",
+        "notes": ""
       },
       {
-        "date": "2025-05-07",
+        "date": "2025-05-08",
         "time": "10:00",
+        "name": "Jan Kowalski",
+        "address": "ul. Jaśkowa Dolina 17, Gdańsk",
+        "phone": "222-333-444",
+        "details": "Kontrola ciśnienia i pobranie krwi",
+        "notes": ""
+      },
+      {
+        "date": "2025-05-08",
+        "time": "12:00",
         "name": "Piotr Zieliński",
-        "address": "ul. Ogarna 21, Gdańsk"
-      },
-      {
-        "date": "2025-05-07",
-        "time": "12:00",
-        "name": "Jan Kowalski",
-        "address": "ul. Szeroka 15, Gdańsk"
-      },
-      {
-        "date": "2025-05-07",
-        "time": "14:00",
-        "name": "Ewa Kaczmarek",
-        "address": "ul. Długa 1, Gdańsk"
-      },
-      {
-        "date": "2025-05-08",
-        "time": "08:30",
-        "name": "Ewa Kaczmarek",
-        "address": "ul. Grunwaldzka 100, Gdańsk"
-      },
-      {
-        "date": "2025-05-08",
-        "time": "10:00",
-        "name": "Jan Kowalski",
-        "address": "ul. Jaśkowa Dolina 17, Gdańsk"
-      },
-      {
-        "date": "2025-05-08",
-        "time": "12:00",
-        "name": "Jan Kowalski",
-        "address": "ul. Szeroka 15, Gdańsk"
+        "address": "ul. Jaśkowa Dolina 17, Gdańsk",
+        "phone": "666-777-999",
+        "details": "Zastrzyk domięśniowy",
+        "notes": ""
       },
       {
         "date": "2025-05-08",
         "time": "14:00",
-        "name": "Maria Wiśniewska",
-        "address": "ul. Mariacka 8, Gdańsk"
-      },
-      {
-        "date": "2025-05-09",
-        "time": "08:30",
         "name": "Anna Nowak",
-        "address": "ul. Chlebnicka 3, Gdańsk"
+        "address": "ul. Mariacka 8, Gdańsk",
+        "phone": "222-333-444",
+        "details": "Pomiar poziomu cukru",
+        "notes": ""
+      },
+      {
+        "date": "2025-05-09",
+        "time": "08:30",
+        "name": "Ewa Kaczmarek",
+        "address": "ul. Długa 1, Gdańsk",
+        "phone": "123-456-789",
+        "details": "Kontrola ciśnienia i pobranie krwi",
+        "notes": ""
       },
       {
         "date": "2025-05-09",
         "time": "10:00",
-        "name": "Maria Wiśniewska",
-        "address": "ul. Chlebnicka 3, Gdańsk"
+        "name": "Anna Nowak",
+        "address": "ul. Chlebnicka 3, Gdańsk",
+        "phone": "987-654-321",
+        "details": "Kontrola ciśnienia i pobranie krwi",
+        "notes": ""
       },
       {
         "date": "2025-05-09",
         "time": "12:00",
-        "name": "Ewa Kaczmarek",
-        "address": "ul. Grunwaldzka 100, Gdańsk"
+        "name": "Anna Nowak",
+        "address": "ul. Rajska 10, Gdańsk",
+        "phone": "666-777-999",
+        "details": "Zastrzyk domięśniowy",
+        "notes": ""
       },
       {
         "date": "2025-05-09",
         "time": "14:00",
-        "name": "Maria Wiśniewska",
-        "address": "ul. Jaśkowa Dolina 17, Gdańsk"
+        "name": "Jan Kowalski",
+        "address": "ul. Chlebnicka 3, Gdańsk",
+        "phone": "123-456-789",
+        "details": "Pomiar poziomu cukru",
+        "notes": ""
       }
     ]
   }

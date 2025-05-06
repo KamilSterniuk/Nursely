@@ -1,5 +1,6 @@
 package com.example.nursely;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,11 @@ import java.util.List;
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
 
     List<EventItem> eventList;
+    String login; // dodane
 
-    public EventAdapter(List<EventItem> eventList) {
+    public EventAdapter(List<EventItem> eventList, String login) {
         this.eventList = eventList;
+        this.login = login;
     }
 
     @NonNull
@@ -42,9 +45,16 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             holder.time.setTextSize(16);
             holder.name.setVisibility(View.VISIBLE);
             holder.address.setVisibility(View.VISIBLE);
+
+            holder.itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(v.getContext(), EventDetailActivity.class);
+                intent.putExtra("login", login);
+                intent.putExtra("date", item.getDate());
+                intent.putExtra("time", item.getTime());
+                v.getContext().startActivity(intent);
+            });
         }
     }
-
 
     @Override
     public int getItemCount() {
