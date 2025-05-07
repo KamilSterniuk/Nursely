@@ -1,6 +1,8 @@
 // === EventDetailActivity.java z opcją dzwonienia ===
 package com.example.nursely;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import android.content.pm.PackageManager;
@@ -22,6 +25,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.Calendar;
 
 public class EventDetailActivity extends AppCompatActivity {
 
@@ -74,17 +78,119 @@ public class EventDetailActivity extends AppCompatActivity {
             startActivity(mapIntent);
         });
 
-        editBtn.setOnClickListener(v -> {
-            Toast.makeText(this, "Tryb edycji (do zaimplementowania)", Toast.LENGTH_SHORT).show();
-        });
+        editBtn.setOnClickListener(v -> showEditDialog());
 
         deleteBtn.setOnClickListener(v -> {
-            Toast.makeText(this, "Potwierdzenie usunięcia (do zaimplementowania)", Toast.LENGTH_SHORT).show();
+            new AlertDialog.Builder(this)
+                    .setTitle("Potwierdzenie")
+                    .setMessage("Czy na pewno chcesz usunąć tę wizytę?")
+                    .setPositiveButton("Usuń", (dialog, which) -> {
+                        deleteEventFromJson();
+                        Toast.makeText(this, "Wizyta usunięta", Toast.LENGTH_SHORT).show();
+                        finish(); // wraca do NurseActivity
+                    })
+                    .setNegativeButton("Anuluj", null)
+                    .show();
+
         });
 
         saveNoteBtn.setOnClickListener(v -> saveNoteToJson());
 
     }
+
+    private void showEditDialog() {
+        final Calendar currentCal = Calendar.getInstance();
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
+            TimePickerDialog timePickerDialog = new TimePickerDialog(this, (view1, hourOfDay, minute) -> {
+                String newDate = String.format("%04d-%02d-%02d", year, month + 1, dayOfMonth);
+                String newTime = String.format("%02d:%02d", hourOfDay, minute);
+                updateEventDateTime(newDate, newTime);
+            }, currentCal.get(Calendar.HOUR_OF_DAY), currentCal.get(Calendar.MINUTE), true);
+            timePickerDialog.show();
+        }, currentCal.get(Calendar.YEAR), currentCal.get(Calendar.MONTH), currentCal.get(Calendar.DAY_OF_MONTH));
+
+        datePickerDialog.show();
+    }
+
+    private void updateEventDateTime(String newDate, String newTime) {
+        try {
+            File file = new File(getFilesDir(), "users.json");
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+            reader.close();
+
+            JSONArray users = new JSONArray(sb.toString());
+
+            for (int i = 0; i < users.length(); i++) {
+                JSONObject user = users.getJSONObject(i);
+                if (user.getString("login").equals(login)) {
+                    JSONArray events = user.getJSONArray("events");
+                    for (int j = 0; j < events.length(); j++) {
+                        JSONObject e = events.getJSONObject(j);
+                        if (e.getString("date").equals(date) && e.getString("time").equals(time)) {
+                            e.put("date", newDate);
+                            e.put("time", newTime);
+
+                            FileWriter writer = new FileWriter(file);
+                            writer.write(users.toString(2));
+                            writer.close();
+
+                            Toast.makeText(this, "Zmieniono termin wizyty", Toast.LENGTH_SHORT).show();
+                            finish(); // wróć do NurseActivity
+                            return;
+                        }
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Błąd edycji", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+    private void deleteEventFromJson() {
+        try {
+            File file = new File(getFilesDir(), "users.json");
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+            reader.close();
+
+            JSONArray users = new JSONArray(sb.toString());
+
+            for (int i = 0; i < users.length(); i++) {
+                JSONObject user = users.getJSONObject(i);
+                if (user.getString("login").equals(login)) {
+                    JSONArray events = user.getJSONArray("events");
+                    for (int j = 0; j < events.length(); j++) {
+                        JSONObject e = events.getJSONObject(j);
+                        if (e.getString("date").equals(date) && e.getString("time").equals(time)) {
+                            events.remove(j); // ← usuń z tablicy
+                            FileWriter writer = new FileWriter(file);
+                            writer.write(users.toString(2));
+                            writer.close();
+                            return;
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Błąd przy usuwaniu", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     private void makePhoneCall() {
         String phoneNumber = currentEvent.getPhone();

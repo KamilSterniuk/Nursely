@@ -1,7 +1,5 @@
-// === NurseActivity.java (poprawiona konstrukcja EventItem) ===
 package com.example.nursely;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -9,9 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
-import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
-import com.prolificinteractive.materialcalendarview.CalendarDay;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -46,8 +43,6 @@ public class NurseActivity extends AppCompatActivity {
 
         currentLogin = getIntent().getStringExtra("login");
 
-        loadEventsForNurse();
-
         calendarView.setOnDateChangedListener((widget, calendarDay, selected) -> {
             LocalDate clickedDate = convertToLocalDate(calendarDay.getDate());
 
@@ -61,10 +56,22 @@ public class NurseActivity extends AppCompatActivity {
             }
         });
 
-        showAllEventsGrouped();
+        loadEvents(); // początkowe wczytanie
+
+        FloatingActionButton addEventFab = findViewById(R.id.addEventFab);
+        addEventFab.setOnClickListener(v -> {
+            Toast.makeText(this, "Dodawanie pacjenta – wkrótce!", Toast.LENGTH_SHORT).show();
+        });
+
     }
 
-    private void loadEventsForNurse() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadEvents(); // odświeżanie danych po powrocie
+    }
+
+    private void loadEvents() {
         try {
             File file = new File(getFilesDir(), "users.json");
             BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -75,11 +82,14 @@ public class NurseActivity extends AppCompatActivity {
                 sb.append(line);
             }
 
+            reader.close();
+
             JSONArray users = new JSONArray(sb.toString());
+            fullEventList.clear();
+
             for (int i = 0; i < users.length(); i++) {
                 JSONObject user = users.getJSONObject(i);
                 if (user.getString("login").equals(currentLogin)) {
-                    fullEventList.clear();
                     if (user.has("events")) {
                         JSONArray events = user.getJSONArray("events");
                         for (int j = 0; j < events.length(); j++) {
@@ -99,7 +109,12 @@ public class NurseActivity extends AppCompatActivity {
                 }
             }
 
-            reader.close();
+            if (selectedDate != null) {
+                filterEventsByDate(selectedDate);
+            } else {
+                showAllEventsGrouped();
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "Błąd ładowania wydarzeń", Toast.LENGTH_SHORT).show();
@@ -122,10 +137,7 @@ public class NurseActivity extends AppCompatActivity {
 
         for (EventItem item : fullEventList) {
             String date = item.getDate();
-            if (!grouped.containsKey(date)) {
-                grouped.put(date, new ArrayList<>());
-            }
-            grouped.get(date).add(item);
+            grouped.computeIfAbsent(date, k -> new ArrayList<>()).add(item);
         }
 
         List<EventItem> groupedWithHeaders = new ArrayList<>();
