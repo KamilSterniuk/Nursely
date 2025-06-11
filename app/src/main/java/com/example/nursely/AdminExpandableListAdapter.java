@@ -15,12 +15,15 @@ public class AdminExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> nurseList;
+    private List<String> nurseNameList;
+
     private HashMap<String, List<JSONObject>> visitMap;
 
-    public AdminExpandableListAdapter(Context context, List<String> nurseList, HashMap<String, List<JSONObject>> visitMap) {
+    public AdminExpandableListAdapter(Context context, List<String> nurseList, List<String> nurseNameList,HashMap<String, List<JSONObject>> visitMap) {
         this.context = context;
         this.nurseList = nurseList;
         this.visitMap = visitMap;
+        this.nurseNameList = nurseNameList;
     }
 
     @Override
@@ -60,13 +63,16 @@ public class AdminExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        String nurseName = (String) getGroup(groupPosition);
+//        String nurseName = (String) getGroup(groupPosition);
+        String nurseName = nurseList.get(groupPosition);
+        String nurseFullName = nurseNameList.get(groupPosition); //imię i nazwisko
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(context);
             convertView = inflater.inflate(android.R.layout.simple_expandable_list_item_1, parent, false);
         }
         TextView textView = convertView.findViewById(android.R.id.text1);
-        textView.setText("Pielęgniarka: " + nurseName);
+//        textView.setText("Pielęgniarka: " + nurseName);
+        textView.setText("Pielęgniarka: " + nurseName + " (" + nurseFullName + ")");
         textView.setTextSize(18f);
         return convertView;
     }

@@ -8,6 +8,7 @@
     "login": "nurse1",
     "password": "nurse123",
     "userType": "nurse",
+    "nurseName": "Anna Annienska",
     "events": [
       {
         "date": "2025-05-05",
@@ -195,6 +196,7 @@
     "login": "nurse2",
     "password": "nurse456",
     "userType": "nurse",
+    "nurseName": "Marek Niewoch",
     "events": [
       {
         "date": "2025-05-05",

@@ -1,5 +1,6 @@
 package com.example.nursely;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
@@ -8,11 +9,14 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.*;
 import java.util.*;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 
 public class AdminActivity extends AppCompatActivity {
 
     ExpandableListView expandableListView;
     List<String> nurseList;
+    List<String> nurseNameList;
     HashMap<String, List<JSONObject>> visitMap;
     AdminExpandableListAdapter adapter;
 
@@ -22,12 +26,21 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
 
         expandableListView = findViewById(R.id.expandableListView);
+
+        FloatingActionButton addEventFab = findViewById(R.id.addEventFab);
+        addEventFab.setOnClickListener(v -> {
+            Intent intent = new Intent(AdminActivity.this, AddEventAdminActivity.class);
+//            intent.putExtra("login", currentLogin);
+            startActivity(intent);
+        });
+
         nurseList = new ArrayList<>();
+        nurseNameList = new ArrayList<>();
         visitMap = new HashMap<>();
 
         loadVisits();
 
-        adapter = new AdminExpandableListAdapter(this, nurseList, visitMap);
+        adapter = new AdminExpandableListAdapter(this, nurseList, nurseNameList, visitMap);
         expandableListView.setAdapter(adapter);
     }
 
@@ -35,7 +48,7 @@ public class AdminActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         loadVisits();
-        adapter = new AdminExpandableListAdapter(this, nurseList, visitMap);
+        adapter = new AdminExpandableListAdapter(this, nurseList, nurseNameList, visitMap);
         expandableListView.setAdapter(adapter);
     }
 
@@ -44,6 +57,7 @@ public class AdminActivity extends AppCompatActivity {
         try {
             nurseList.clear();
             visitMap.clear();
+            nurseNameList.clear();
 
             File file = new File(getFilesDir(), "users.json");
             BufferedReader reader = new BufferedReader(new FileReader(file));
@@ -62,6 +76,8 @@ public class AdminActivity extends AppCompatActivity {
                 if (user.getString("userType").equals("nurse")) {
                     String nurseLogin = user.getString("login");
                     nurseList.add(nurseLogin);
+                    String nurseName = user.getString("nurseName");
+                    nurseNameList.add(nurseName);
                     List<JSONObject> visits = new ArrayList<>();
 
                     JSONArray events = user.optJSONArray("events");
