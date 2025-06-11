@@ -3,7 +3,10 @@ package com.example.nursely;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.*;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import org.json.*;
 import java.io.*;
@@ -40,6 +43,11 @@ public class AddVisitActivity extends AppCompatActivity {
         dateBtn.setOnClickListener(v -> pickDate());
         timeBtn.setOnClickListener(v -> pickTime());
         saveBtn.setOnClickListener(v -> saveVisit());
+
+        Button addNurseButton = findViewById(R.id.addNurseButton);
+        addNurseButton.setOnClickListener(v -> showAddNurseDialog());
+
+
     }
 
     /* wypełnij spinner listą pielęgniarek */
@@ -146,4 +154,83 @@ public class AddVisitActivity extends AppCompatActivity {
             Toast.makeText(this, "Błąd zapisu wizyty", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void showAddNurseDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Dodaj pielęgniarkę");
+
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_nurse, null);
+        builder.setView(dialogView);
+
+        EditText loginInput = dialogView.findViewById(R.id.loginInput);
+        EditText passwordInput = dialogView.findViewById(R.id.passwordInput);
+        EditText phoneInput = dialogView.findViewById(R.id.phoneInput);
+        EditText fullNameInput = dialogView.findViewById(R.id.fullNameInput);
+
+        builder.setPositiveButton("Zapisz", (dialog, which) -> {
+            String login = loginInput.getText().toString().trim();
+            String password = passwordInput.getText().toString().trim();
+            String phone = phoneInput.getText().toString().trim();
+            String fullName = fullNameInput.getText().toString().trim();
+
+            if (login.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Uzupełnij login i hasło", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            try {
+                File file = new File(getFilesDir(), "users.json");
+                if (!file.exists()) {
+                    JSONArray initial = new JSONArray();
+                    FileWriter writer = new FileWriter(file);
+                    writer.write(initial.toString());
+                    writer.close();
+                }
+
+                BufferedReader reader = new BufferedReader(new FileReader(file));
+                StringBuilder sb = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                }
+                reader.close();
+
+                JSONArray users = new JSONArray(sb.toString());
+
+                for (int i = 0; i < users.length(); i++) {
+                    if (users.getJSONObject(i).getString("login").equals(login)) {
+                        Toast.makeText(this, "Login już istnieje", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+
+                JSONObject newNurse = new JSONObject();
+                newNurse.put("login", login);
+                newNurse.put("password", password);
+                newNurse.put("userType", "nurse");
+                newNurse.put("phone", phone);
+                newNurse.put("fullName", fullName);
+                newNurse.put("events", new JSONArray());
+
+                users.put(newNurse);
+
+                FileWriter writer = new FileWriter(file);
+                writer.write(users.toString(2));
+                writer.close();
+
+                Toast.makeText(this, "Pielęgniarka dodana", Toast.LENGTH_SHORT).show();
+                recreate();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Błąd zapisu: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        builder.setNegativeButton("Anuluj", null);
+        builder.show();
+    }
+
+
+
 }
