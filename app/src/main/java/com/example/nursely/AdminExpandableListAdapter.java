@@ -8,8 +8,12 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class AdminExpandableListAdapter extends BaseExpandableListAdapter {
 
@@ -58,18 +62,28 @@ public class AdminExpandableListAdapter extends BaseExpandableListAdapter {
         return false;
     }
 
+
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        String nurseName = (String) getGroup(groupPosition);
         if (convertView == null) {
-            LayoutInflater inflater = LayoutInflater.from(context);
-            convertView = inflater.inflate(android.R.layout.simple_expandable_list_item_1, parent, false);
+            convertView = LayoutInflater.from(context)
+                    .inflate(R.layout.group_nurse_header, parent, false);
         }
-        TextView textView = convertView.findViewById(android.R.id.text1);
-        textView.setText("Pielęgniarka: " + nurseName);
-        textView.setTextSize(18f);
+
+        String nurseLogin = nurseList.get(groupPosition);
+        ((TextView) convertView.findViewById(R.id.nurseNameText))
+                .setText("Pielęgniarka: " + nurseLogin);
+
+        // plusik
+        convertView.findViewById(R.id.addVisitIcon).setOnClickListener(v -> {
+            Intent intent = new Intent(context, AddVisitActivity.class);
+            intent.putExtra("login", nurseLogin);   // przekazujemy konkretną pielęgniarkę
+            context.startActivity(intent);
+        });
+
         return convertView;
     }
+
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
@@ -87,9 +101,31 @@ public class AdminExpandableListAdapter extends BaseExpandableListAdapter {
 
             String fullTime = date + " " + time;
 
-            ((TextView) convertView.findViewById(R.id.visitTimeDate)).setText(fullTime);
-            ((TextView) convertView.findViewById(R.id.visitPatient)).setText(name);
-            ((TextView) convertView.findViewById(R.id.visitDetails)).setText(details);
+            TextView timeView = convertView.findViewById(R.id.visitTimeDate);
+            TextView patientView = convertView.findViewById(R.id.visitPatient);
+            TextView detailsView = convertView.findViewById(R.id.visitDetails);
+
+            timeView.setText(fullTime);
+            patientView.setText(name);
+            detailsView.setText(details);
+
+            // WYSZARZANIE jeśli wizyta się już odbyła
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+                Date visitDate = sdf.parse(fullTime);
+                Date now = new Date();
+
+                if (visitDate != null && visitDate.before(now)) {
+                    // Wizyta w przeszłości – wyszarz
+                    convertView.setAlpha(0.5f);
+                } else {
+                    // Wizyta w przyszłości – pełna widoczność
+                    convertView.setAlpha(1.0f);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                convertView.setAlpha(1.0f);
+            }
 
             convertView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, AdminVisitDetailActivity.class);
@@ -109,6 +145,7 @@ public class AdminExpandableListAdapter extends BaseExpandableListAdapter {
 
         return convertView;
     }
+
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {

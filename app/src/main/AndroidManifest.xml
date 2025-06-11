@@ -28,6 +28,7 @@
         <activity android:name=".EventDetailActivity" />
         <activity android:name=".AddEventActivity" />
         <activity android:name=".AdminVisitDetailActivity" />
+        <activity android:name=".AddVisitActivity" />
 
     </application>
 

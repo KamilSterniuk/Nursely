@@ -1,5 +1,6 @@
 package com.example.nursely;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
@@ -29,6 +30,13 @@ public class AdminActivity extends AppCompatActivity {
 
         adapter = new AdminExpandableListAdapter(this, nurseList, visitMap);
         expandableListView.setAdapter(adapter);
+
+        findViewById(R.id.addGlobalFab).setOnClickListener(v -> {
+            Intent intent = new Intent(AdminActivity.this, AddVisitActivity.class);
+            // NIE przekazujemy loginu – w AddVisitActivity pokaże się dropdown do wyboru pielęgniarki
+            startActivity(intent);
+        });
+
     }
 
     @Override
