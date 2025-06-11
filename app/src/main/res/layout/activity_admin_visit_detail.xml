@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Szczegóły wizyty (admin)"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:id="@+id/visitDateText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📅 Data: 2025-05-05"
+                android:textSize="16sp"
+                android:textColor="#333333" />
+
+            <TextView
+                android:id="@+id/visitTimeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🕒 Godzina: 14:00"
+                android:textSize="16sp"
+                android:textColor="#333333" />
+
+            <TextView
+                android:id="@+id/nurseLoginText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="👩‍⚕️ Pielęgniarka: nurse1"
+                android:textSize="16sp"
+                android:textColor="#333333" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:background="@drawable/rounded_container"
+            android:layout_marginBottom="32dp"
+            android:elevation="2dp"
+            android:minHeight="220dp">
+
+            <TextView android:text="👤 Imię i nazwisko:" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" android:textSize="18sp" />
+            <TextView android:id="@+id/nameText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="18sp" android:layout_marginBottom="12dp" />
+
+            <TextView android:text="📍 Adres:" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" android:textSize="18sp" />
+            <TextView android:id="@+id/addressText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="18sp" android:layout_marginBottom="12dp" />
+
+            <TextView android:text="📞 Telefon:" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" android:textSize="18sp" />
+            <TextView android:id="@+id/phoneText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="18sp" android:layout_marginBottom="12dp" />
+
+            <TextView android:text="📝 Szczegóły:" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" android:textSize="18sp" />
+            <TextView android:id="@+id/detailsText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="18sp" android:layout_marginBottom="8dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="✏️ Zmień datę/godzinę"
+            android:backgroundTint="@color/nursely_blue"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/transferButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🔁 Przenieś do innej pielęgniarki"
+            android:backgroundTint="@color/nursely_blue"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🗑️ Usuń wizytę"
+            android:backgroundTint="@color/nursely_blue"
+            android:textColor="@android:color/holo_red_dark" />
+
+    </LinearLayout>
+</ScrollView>

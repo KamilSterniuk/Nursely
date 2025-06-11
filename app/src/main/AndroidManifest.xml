@@ -26,6 +26,8 @@
         <activity android:name=".AdminActivity"/>
         <activity android:name=".NurseActivity"/>
         <activity android:name=".EventDetailActivity" />
+        <activity android:name=".AddEventActivity" />
+        <activity android:name=".AdminVisitDetailActivity" />
 
     </application>
 

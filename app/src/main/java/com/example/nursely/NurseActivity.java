@@ -1,5 +1,6 @@
 package com.example.nursely;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -60,8 +61,11 @@ public class NurseActivity extends AppCompatActivity {
 
         FloatingActionButton addEventFab = findViewById(R.id.addEventFab);
         addEventFab.setOnClickListener(v -> {
-            Toast.makeText(this, "Dodawanie pacjenta – wkrótce!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(NurseActivity.this, AddEventActivity.class);
+            intent.putExtra("login", currentLogin);
+            startActivity(intent);
         });
+
 
     }
 
