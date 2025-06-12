@@ -96,7 +96,13 @@ public class AddVisitActivity extends AppCompatActivity {
     }
 
     private void saveVisit() {
-        String nurseLogin = nurseSpinner.getSelectedItem().toString();
+        String selectedItem = nurseSpinner.getSelectedItem().toString();
+        // 2. wyciągasz login: zakładam format "Imię Nazwisko (login)"
+        int sb1 = selectedItem.lastIndexOf('(');
+        int eb = selectedItem.lastIndexOf(')');
+        String nurseLogin = (sb1 != -1 && eb != -1 && eb > sb1)
+                ? selectedItem.substring(sb1 + 1, eb)
+                : selectedItem;  // fallback, gdy format niespodziewany
         String name = nameInput.getText().toString().trim();
         String address = addressInput.getText().toString().trim();
         String phone = phoneInput.getText().toString().trim();
