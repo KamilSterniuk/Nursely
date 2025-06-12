@@ -65,7 +65,7 @@ public class AddVisitActivity extends AppCompatActivity {
             for (int i = 0; i < users.length(); i++) {
                 JSONObject u = users.getJSONObject(i);
                 if (u.getString("userType").equals("nurse"))
-                    logins.add(u.getString("login"));
+                    logins.add(u.getString("fullName") + " (" + u.getString(("login")) + ")");
             }
         } catch (Exception e) { e.printStackTrace(); }
 
